@@ -1,0 +1,13 @@
+C:\own stuff\test\videoLibrary\videoLibrary\bin\Debug\videoLibrary.exe.config
+C:\own stuff\test\videoLibrary\videoLibrary\bin\Debug\videoLibrary.exe
+C:\own stuff\test\videoLibrary\videoLibrary\bin\Debug\videoLibrary.pdb
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.csprojResolveAssemblyReference.cache
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\MainWindow.baml
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\MainWindow.g.cs
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\App.g.cs
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary_MarkupCompile.cache
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.g.resources
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.Properties.Resources.resources
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.csproj.GenerateResource.Cache
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.exe
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary.pdb
