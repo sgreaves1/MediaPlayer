@@ -10,6 +10,7 @@ namespace videoLibrary.ViewModel
     public class MainWindowViewModel : BaseViewModel
     {
         private string _mediaFolder;
+        private string _videoName;
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
 
         public MainWindowViewModel()
@@ -34,6 +35,19 @@ namespace videoLibrary.ViewModel
             }
         }
 
+        public string VideoName
+        {
+            get
+            {
+                return _videoName;
+            }
+            set
+            {
+                _videoName = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Film> Films
         {
             get { return _films;}
@@ -52,6 +66,7 @@ namespace videoLibrary.ViewModel
             {
                 string name;
                 string imageName = "";
+                string videoName = "";
 
                 int pos = dir.LastIndexOf("\\") + 1;
                 name = dir.Substring(pos, dir.Length - pos);
@@ -64,16 +79,21 @@ namespace videoLibrary.ViewModel
                     {
                         imageName = file;
                     }
+
+                    if (file.Contains(".avi"))
+                    {
+                        videoName = file;
+                    }
                 }
 
-                AddFilm(name, imageName);
+                AddFilm(name, imageName, videoName);
                 
             }
         }
 
-        public void AddFilm(string name, string imageName)
+        public void AddFilm(string name, string imageName, string videoName)
         {
-            Films.Add(new Film(name, imageName));
+            Films.Add(new Film(name, imageName, videoName));
         }
 
         #region commands
@@ -91,7 +111,7 @@ namespace videoLibrary.ViewModel
 
         private void Execute(object sender)
         {
-
+            VideoName = ((Film) sender).VideoFile;
         }
 
         #endregion

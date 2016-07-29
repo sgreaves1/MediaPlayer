@@ -28,6 +28,10 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            
+            <MediaElement Name="VideoPlayer"
+                      Source="{Binding Path=VideoName}"
+                      ScrubbingEnabled="True"/>
         </StackPanel>
     </Grid>
 </Window>

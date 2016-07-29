@@ -6,10 +6,11 @@
         private string _videoFile;
         private string _imageName;
 
-        public Film(string name, string imageName)
+        public Film(string name, string imageName, string videoName)
         {
             Name = name;
             ImageName = imageName;
+            VideoFile = videoName;
         }
 
         public string Name
