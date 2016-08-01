@@ -42,16 +42,20 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <Button Width="50"
-                    Command="{Binding Path=XCommand}"
-                    Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}">
-                X
-            </Button>
-            <MediaElement Name="VideoPlayer"
+            <Grid>
+                <MediaElement Name="VideoPlayer"
                       Source="{Binding Path=VideoName}"
                       ScrubbingEnabled="True"
                           LoadedBehavior="Manual"
                           Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"/>
+                <Button Width="50" Height="25" VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Command="{Binding Path=XCommand}"
+                    Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}">
+                    X
+                </Button>
+            </Grid>
+           
 
             <CheckBox IsChecked="{Binding Path=IsPiOnline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Raspberry Pi</CheckBox>
         </StackPanel>
