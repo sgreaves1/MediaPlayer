@@ -26,3 +26,5 @@ C:\Projects\mediaplayer\videoLibrary\obj\Debug\videoLibrary.pdb
 C:\Projects\mediaplayer\videoLibrary\bin\Debug\Media\FileNotFound.jpg
 C:\Projects\mediaplayer\videoLibrary\obj\Debug\videoLibrary_Content.g.cs
 C:\Projects\mediaplayer\videoLibrary\obj\Debug\videoLibrary.csprojResolveAssemblyReference.cache
+C:\own stuff\test\videoLibrary\videoLibrary\bin\Debug\Media\FileNotFound.jpg
+C:\own stuff\test\videoLibrary\videoLibrary\obj\Debug\videoLibrary_Content.g.cs

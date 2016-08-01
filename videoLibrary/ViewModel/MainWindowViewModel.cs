@@ -22,8 +22,8 @@ namespace videoLibrary.ViewModel
         {
             //nN34iy9ie9
             MediaFolder = "C:\\Users\\SamG\\Downloads\\Films";
-            MediaFolder = "C:\\Users\\Sam\\Downloads\\Films";
-            MediaFolder = @"\\RASPBERRYPI\Films\Films";
+            //MediaFolder = "C:\\Users\\Sam\\Downloads\\Films";
+            //MediaFolder = @"\\RASPBERRYPI\Films\Films";
 
             GetFilms();
 
@@ -32,7 +32,7 @@ namespace videoLibrary.ViewModel
             ShowFilms = true;
             ShowVideo = false;
 
-            IsPiOnline = CheckPing("192.168.1.5");
+            //IsPiOnline = CheckPing("192.168.1.5");
         }
 
         public string MediaFolder
@@ -103,34 +103,37 @@ namespace videoLibrary.ViewModel
 
         public void GetFilms()
         {
-            var directories = Directory.GetDirectories(MediaFolder);
-
-            foreach (var dir in directories)
+            if (Directory.Exists(MediaFolder))
             {
-                string name;
-                string imageName = "";
-                string videoName = "";
+                var directories = Directory.GetDirectories(MediaFolder);
 
-                int pos = dir.LastIndexOf("\\") + 1;
-                name = dir.Substring(pos, dir.Length - pos);
-
-                var files = Directory.GetFiles(dir);
-
-                foreach (var file in files)
+                foreach (var dir in directories)
                 {
-                    if (file.Contains(".jpg"))
+                    string name;
+                    string imageName = "";
+                    string videoName = "";
+
+                    int pos = dir.LastIndexOf("\\") + 1;
+                    name = dir.Substring(pos, dir.Length - pos);
+
+                    var files = Directory.GetFiles(dir);
+
+                    foreach (var file in files)
                     {
-                        imageName = file;
+                        if (file.Contains(".jpg"))
+                        {
+                            imageName = file;
+                        }
+
+                        if (file.Contains(".avi"))
+                        {
+                            videoName = file;
+                        }
                     }
 
-                    if (file.Contains(".avi"))
-                    {
-                        videoName = file;
-                    }
+                    AddFilm(name, imageName, videoName);
+
                 }
-
-                AddFilm(name, imageName, videoName);
-                
             }
         }
 
