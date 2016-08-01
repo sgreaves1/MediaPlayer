@@ -102,6 +102,9 @@ namespace videoLibrary.ViewModel
             }
         }
 
+        public event EventHandler StopRequested;
+        public event EventHandler PlayRequested;
+
         public void GetFilms()
         {
             if (Directory.Exists(MediaFolder[0]))
@@ -140,8 +143,6 @@ namespace videoLibrary.ViewModel
 
         public void AddFilm(string name, string imageName, string videoName)
         {
-            
-
             if (string.IsNullOrEmpty(imageName))
                 imageName = Directory.GetCurrentDirectory() + @"\Media\FileNotFound.jpg";
 
@@ -196,6 +197,8 @@ namespace videoLibrary.ViewModel
 
             ShowFilms = false;
             ShowVideo = true;
+
+            PlayRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private bool CanExecuteXCommand(object sender)
@@ -207,6 +210,8 @@ namespace videoLibrary.ViewModel
         {
             ShowFilms = true;
             ShowVideo = false;
+
+            StopRequested?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion

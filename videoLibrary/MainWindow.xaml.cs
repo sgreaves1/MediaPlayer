@@ -1,4 +1,5 @@
-﻿using videoLibrary.ViewModel;
+﻿using System;
+using videoLibrary.ViewModel;
 
 namespace videoLibrary
 {
@@ -10,8 +11,22 @@ namespace videoLibrary
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
 
-            DataContext = new MainWindowViewModel();
+            viewModel.PlayRequested += ViewModelOnPlayRequested;
+
+            viewModel.StopRequested += ViewModelOnStopRequested;
+        }
+
+        private void ViewModelOnStopRequested(object sender, EventArgs eventArgs)
+        {
+            VideoPlayer.Close();
+        }
+
+        private void ViewModelOnPlayRequested(object sender, EventArgs eventArgs)
+        {
+            VideoPlayer.Play();
         }
     }
 }

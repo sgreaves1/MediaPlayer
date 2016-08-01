@@ -50,6 +50,7 @@
             <MediaElement Name="VideoPlayer"
                       Source="{Binding Path=VideoName}"
                       ScrubbingEnabled="True"
+                          LoadedBehavior="Manual"
                           Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"/>
 
             <CheckBox IsChecked="{Binding Path=IsPiOnline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Raspberry Pi</CheckBox>
