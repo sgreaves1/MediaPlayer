@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ namespace videoLibrary.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private string _mediaFolder;
+        private List<string> _mediaFolder = new List<string>();
         private string _videoName;
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
         private bool _showVideo;
@@ -21,9 +22,9 @@ namespace videoLibrary.ViewModel
         public MainWindowViewModel()
         {
             //nN34iy9ie9
-            MediaFolder = "C:\\Users\\SamG\\Downloads\\Films";
-            //MediaFolder = "C:\\Users\\Sam\\Downloads\\Films";
-            //MediaFolder = @"\\RASPBERRYPI\Films\Films";
+            MediaFolder.Add("C:\\Users\\SamG\\Downloads\\Films");
+            MediaFolder.Add("C:\\Users\\Sam\\Downloads\\Films");
+            MediaFolder.Add(@"\\RASPBERRYPI\Films\Films");
 
             GetFilms();
 
@@ -35,7 +36,7 @@ namespace videoLibrary.ViewModel
             //IsPiOnline = CheckPing("192.168.1.5");
         }
 
-        public string MediaFolder
+        public List<string> MediaFolder
         {
             get
             {
@@ -103,9 +104,9 @@ namespace videoLibrary.ViewModel
 
         public void GetFilms()
         {
-            if (Directory.Exists(MediaFolder))
+            if (Directory.Exists(MediaFolder[0]))
             {
-                var directories = Directory.GetDirectories(MediaFolder);
+                var directories = Directory.GetDirectories(MediaFolder[0]);
 
                 foreach (var dir in directories)
                 {
