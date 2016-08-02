@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using LibrarySamples.Command;
 using videoLibrary.Model;
@@ -14,6 +15,7 @@ namespace videoLibrary.ViewModel
     {
         private List<string> _mediaFolder = new List<string>();
         private string _videoName;
+        private string _videoTitle;
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
         private bool _showVideo;
         private bool _showFilms;
@@ -49,6 +51,9 @@ namespace videoLibrary.ViewModel
             }
         }
 
+        /// <summary>
+        /// The file path of the video
+        /// </summary>
         public string VideoName
         {
             get
@@ -58,6 +63,22 @@ namespace videoLibrary.ViewModel
             set
             {
                 _videoName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The title to display on the media control
+        /// </summary>
+        public string VideoTitle
+        {
+            get
+            {
+                return _videoTitle;
+            }
+            set
+            {
+                _videoTitle = value;
                 OnPropertyChanged();
             }
         }
@@ -194,6 +215,8 @@ namespace videoLibrary.ViewModel
         private void ExecuteFilmButtonCommand(object sender)
         {
             VideoName = ((Film) sender).VideoFile;
+            VideoTitle = ((Film) sender).Name;
+
 
             ShowFilms = false;
             ShowVideo = true;

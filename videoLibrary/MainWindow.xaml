@@ -56,7 +56,8 @@
                     X
                 </Button>
                 <userControl:MediaControl VerticalAlignment="Bottom"
-                                          Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"/>
+                                          Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"
+                                          Title="{Binding Path=VideoTitle}"/>
             </Grid>
            
 
