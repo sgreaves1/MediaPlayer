@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Windows.Input;
 using LibrarySamples.Command;
 using videoLibrary.Model;
@@ -23,10 +23,7 @@ namespace videoLibrary.ViewModel
 
         public MainWindowViewModel()
         {
-            //nN34iy9ie9
-            MediaFolder.Add("C:\\Users\\SamG\\Downloads\\Films");
-            MediaFolder.Add("C:\\Users\\Sam\\Downloads\\Films");
-            MediaFolder.Add(@"\\RASPBERRYPI\Films\Films");
+            GetMediaFolders();
 
             GetFilms();
 
@@ -125,6 +122,50 @@ namespace videoLibrary.ViewModel
 
         public event EventHandler StopRequested;
         public event EventHandler PlayRequested;
+
+        private void GetMediaFolders()
+        {
+            string[] folders = ReadSetting("MediaFolder");
+
+            foreach (var folder in folders)
+            {
+                MediaFolder.Add(folder);
+            }
+        }
+
+        static string[] ReadSetting(string key)
+        {
+            string[] result = new string[0];
+
+            try
+            {
+                var appSettings = ConfigurationManager.AppSettings;
+                if (appSettings.Count == 0)
+                {
+                    // app settings empty
+                }
+                else
+                {
+                    string[] appSettingsKey = appSettings[key].Split(',');
+
+                    if (appSettingsKey != null)
+                    {
+                        result = appSettingsKey;
+                    }
+                    else
+                    {
+                        // no app settings with that key
+                    }
+
+                }
+            }
+            catch (ConfigurationErrorsException)
+            {
+                // app settings not read properly
+            }
+
+            return result;
+        }
 
         public void GetFilms()
         {
