@@ -55,11 +55,11 @@
                       ScrubbingEnabled="True"
                           LoadedBehavior="Manual"
                           Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"/>
-                <Button Width="50" Height="25" VerticalAlignment="Top"
+                <Button Width="50" Height="30" VerticalAlignment="Top"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=XCommand}"
                     Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}">
-                    X
+                    <xamlIconLibrary:GoogleMaterialIcon Icon="Replay" Width="25" Height="25" Foreground="Black"/>
                 </Button>
                 <userControl:MediaControl VerticalAlignment="Bottom"
                                           Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"
