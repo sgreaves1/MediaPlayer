@@ -5,6 +5,7 @@
         private string _name;
         private string _videoFile;
         private string _imageName;
+        private bool _isSelected;
 
         public Film(string name, string imageName, string videoName)
         {
@@ -39,6 +40,16 @@
             set
             {
                 _imageName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
                 OnPropertyChanged();
             }
         }

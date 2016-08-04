@@ -24,7 +24,10 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ToggleButton Command="{Binding ElementName=Root, Path=ItemSelectedCommand}">
+                    <ToggleButton Name="ToggleButton1"
+                                  Command="{Binding ElementName=Root, Path=ItemSelectedCommand}"
+                                  CommandParameter="{Binding ElementName=ToggleButton1}"
+                                  IsChecked="{Binding Path=IsSelected, Mode=TwoWay}">
                         <StackPanel>
                             <Label Content="{Binding Path=Name}" HorizontalAlignment="Center"/>
                             <Image Source="{Binding Path=ImageName}" Width="120" Height="120"/>

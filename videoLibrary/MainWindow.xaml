@@ -22,7 +22,9 @@
             </StackPanel>
             
             <userControl:DetailsSection/>
-            <userControl:FilmGallery ItemsSource="{Binding Path=Films}" Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}"/>
+            <userControl:FilmGallery ItemsSource="{Binding Path=Films}"
+                                     ItemSelectedCommand="{Binding Path=FilmSelectedCommand}"
+                                     Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}"/>
 
             <Grid>
                 <MediaElement Name="VideoPlayer"

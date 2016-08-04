@@ -8,6 +8,7 @@ using LibrarySamples.Command;
 using videoLibrary.Model;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Windows.Controls.Primitives;
 
 namespace videoLibrary.ViewModel
 {
@@ -17,6 +18,7 @@ namespace videoLibrary.ViewModel
         private string _videoName;
         private string _videoTitle;
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
+        private Film _selectedFilm;
         private bool _showVideo;
         private bool _showFilms;
         private bool _isPiOnline;
@@ -88,6 +90,16 @@ namespace videoLibrary.ViewModel
             set
             {
                 _films = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Film SelectedFilm
+        {
+            get { return _selectedFilm; }
+            set
+            {
+                _selectedFilm = value;
                 OnPropertyChanged();
             }
         }
@@ -252,12 +264,31 @@ namespace videoLibrary.ViewModel
 
         #region commands
         public ICommand FilmButtonCommand { get; set; }
+        public ICommand FilmSelectedCommand { get; set; }
         public ICommand XCommand { get; set; }
 
         public void InitCommands()
         {
             FilmButtonCommand = new DelegateCommand(ExecuteFilmButtonCommand, CanExecuteFilmButtonCommand);
+            FilmSelectedCommand = new DelegateCommand(ExecuteFilmSelectedCommand, CanExecuteFilmSelectedCommand);
             XCommand = new DelegateCommand(ExecuteXCommand, CanExecuteXCommand);
+        }
+
+        private bool CanExecuteFilmSelectedCommand(object sender)
+        {
+            return true;
+        }
+
+        private void ExecuteFilmSelectedCommand(object sender)
+        {
+            SelectedFilm = (Film)((ToggleButton)sender).DataContext;
+
+            foreach (var film in Films)
+            {
+                film.IsSelected = false;
+            }
+
+            SelectedFilm.IsSelected = true;
         }
 
         private bool CanExecuteFilmButtonCommand(object sender)
