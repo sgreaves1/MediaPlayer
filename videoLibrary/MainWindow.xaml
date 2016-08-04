@@ -66,24 +66,7 @@
                                           Title="{Binding Path=VideoTitle}"/>
             </Grid>
 
-            <StackPanel Orientation="Horizontal">
-                <xamlIconLibrary:MaterialDesignIcon Name="OnlineStatusIcon" Icon="Wifi"  Width="20" Height="20">
-                    <xamlIconLibrary:MaterialDesignIcon.Style>
-                        <Style TargetType="xamlIconLibrary:MaterialDesignIcon">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=IsPiOnline}" Value="True">
-                                    <Setter Property="Foreground" Value="GreenYellow"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=IsPiOnline}" Value="False">
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </xamlIconLibrary:MaterialDesignIcon.Style>
-                </xamlIconLibrary:MaterialDesignIcon>
-                <Label Content="Raspberry Pi"/>
-            </StackPanel>
+            <userControl:DisplayMachinesStatus IsPiOnline="{Binding Path=IsPiOnline}"/>
         </StackPanel>
     </Grid>
 </Window>

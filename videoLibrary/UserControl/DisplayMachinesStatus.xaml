@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="videoLibrary.UserControl.DisplayMachinesStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
+             mc:Ignorable="d" 
+             Name="Root">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <xamlIconLibrary:MaterialDesignIcon Icon="Wifi"  Width="20" Height="20">
+                <xamlIconLibrary:MaterialDesignIcon.Style>
+                    <Style TargetType="xamlIconLibrary:MaterialDesignIcon">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=Root, Path=IsPiOnline}" Value="True">
+                                <Setter Property="Foreground" Value="GreenYellow"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Root, Path=IsPiOnline}" Value="False">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </xamlIconLibrary:MaterialDesignIcon.Style>
+            </xamlIconLibrary:MaterialDesignIcon>
+            <Label Content="Raspberry Pi"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
