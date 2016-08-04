@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:userControl="clr-namespace:videoLibrary.UserControl"
+        xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         x:Name="Root">
@@ -64,9 +65,25 @@
                                           Visibility="{Binding Path=ShowVideo, Converter={StaticResource booltovisconverter}}"
                                           Title="{Binding Path=VideoTitle}"/>
             </Grid>
-           
 
-            <CheckBox IsChecked="{Binding Path=IsPiOnline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Raspberry Pi</CheckBox>
+            <StackPanel Orientation="Horizontal">
+                <xamlIconLibrary:MaterialDesignIcon Name="OnlineStatusIcon" Icon="Wifi"  Width="20" Height="20">
+                    <xamlIconLibrary:MaterialDesignIcon.Style>
+                        <Style TargetType="xamlIconLibrary:MaterialDesignIcon">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsPiOnline}" Value="True">
+                                    <Setter Property="Foreground" Value="GreenYellow"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsPiOnline}" Value="False">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </xamlIconLibrary:MaterialDesignIcon.Style>
+                </xamlIconLibrary:MaterialDesignIcon>
+                <Label Content="Raspberry Pi"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

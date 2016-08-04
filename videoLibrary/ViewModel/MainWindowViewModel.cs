@@ -31,7 +31,7 @@ namespace videoLibrary.ViewModel
 
             ShowFilms = true;
             ShowVideo = false;
-
+            
             //IsPiOnline = CheckPing("192.168.1.5");
         }
 
