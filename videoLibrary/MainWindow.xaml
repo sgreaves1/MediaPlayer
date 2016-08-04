@@ -21,33 +21,8 @@
                 </Button>
             </StackPanel>
             
-
-            <ItemsControl ItemsSource="{Binding Path=Films}" Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-                <ItemsControl.Template>
-                    <ControlTemplate TargetType="ItemsControl">
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                            <ItemsPresenter/>
-                        </ScrollViewer>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button x:Name="film" Command="{Binding Path=DataContext.FilmButtonCommand , RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding ElementName=film, Path=DataContext}">
-                            <StackPanel>
-                                <Label Content="{Binding Path=Name}" HorizontalAlignment="Center"/>
-                                <Image Source="{Binding Path=ImageName}" Width="120" Height="120"/>
-                            </StackPanel>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <userControl:DetailsSection/>
+            <userControl:FilmGallery ItemsSource="{Binding Path=Films}" Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}"/>
 
             <Grid>
                 <MediaElement Name="VideoPlayer"

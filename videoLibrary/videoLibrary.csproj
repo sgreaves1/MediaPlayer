@@ -65,8 +65,14 @@
     <Compile Include="Extended\ColumnDefinitionExtended.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Film.cs" />
+    <Compile Include="UserControl\DetailsSection.xaml.cs">
+      <DependentUpon>DetailsSection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\DisplayMachinesStatus.xaml.cs">
       <DependentUpon>DisplayMachinesStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\FilmGallery.xaml.cs">
+      <DependentUpon>FilmGallery.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\MediaControl.xaml.cs">
       <DependentUpon>MediaControl.xaml</DependentUpon>
@@ -85,7 +91,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControl\DetailsSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\DisplayMachinesStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\FilmGallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
