@@ -20,8 +20,8 @@
                     <xamlIconLibrary:GoogleMaterialIcon Icon="Settings" Foreground="Black" Width="15" Height="15"/>
                 </Button>
             </StackPanel>
-            
-            <userControl:DetailsSection/>
+
+            <userControl:DetailsSection SelectedItem="{Binding Path=SelectedFilm}"/>
             <userControl:FilmGallery ItemsSource="{Binding Path=Films}"
                                      ItemSelectedCommand="{Binding Path=FilmSelectedCommand}"
                                      Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}"/>

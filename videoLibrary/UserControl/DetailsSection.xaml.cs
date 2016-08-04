@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using videoLibrary.Model;
 
 namespace videoLibrary.UserControl
 {
@@ -20,9 +8,30 @@ namespace videoLibrary.UserControl
     /// </summary>
     public partial class DetailsSection 
     {
+        /// <summary>
+        /// Dependency property to back the <see cref="SelectedItem"/> property.
+        /// </summary>
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register("SelectedItem",
+                typeof(Film),
+                typeof(DetailsSection),
+                new PropertyMetadata(null));
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public DetailsSection()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// The selected item of this details section.
+        /// </summary>
+        public Film SelectedItem
+        {
+            get { return (Film)GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
         }
     }
 }

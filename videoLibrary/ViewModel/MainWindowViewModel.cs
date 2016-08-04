@@ -36,7 +36,7 @@ namespace videoLibrary.ViewModel
             ShowVideo = false;
 
             PiIp = "192.168.1.5";
-            //IsPiOnline = CheckPing(PiIp);
+            IsPiOnline = CheckPing(PiIp);
         }
 
         public List<string> MediaFolder
