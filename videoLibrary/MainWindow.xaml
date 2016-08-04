@@ -46,6 +46,7 @@
 
             <userControl:DisplayMachinesStatus IsPiOnline="{Binding Path=IsPiOnline}"
                                                Ip="{Binding Path=PiIp}"
+                                               PiName="{Binding Path=PiName}"
                                                BorderBrush="Black" 
                                                Background="Transparent"
                                                BorderThickness="2"/>

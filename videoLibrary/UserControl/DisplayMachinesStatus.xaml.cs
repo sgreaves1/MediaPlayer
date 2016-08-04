@@ -26,6 +26,17 @@ namespace videoLibrary.UserControl
                 new PropertyMetadata(""));
 
         /// <summary>
+        /// Dependency Property used to back the <see cref="PiName"/> property
+        /// </summary>
+        public static readonly DependencyProperty PiNameProperty =
+            DependencyProperty.Register("PiName", 
+                typeof(string), 
+                typeof(DisplayMachinesStatus), 
+                new PropertyMetadata(""));
+
+
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public DisplayMachinesStatus()
@@ -49,6 +60,15 @@ namespace videoLibrary.UserControl
         {
             get { return (string)GetValue(IpProperty); }
             set { SetValue(IpProperty, value); }
+        }
+
+        /// <summary>
+        /// String represents the physical name of the pi
+        /// </summary>
+        public string PiName
+        {
+            get { return (string)GetValue(PiNameProperty); }
+            set { SetValue(PiNameProperty, value); }
         }
     }
 }

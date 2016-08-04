@@ -24,7 +24,7 @@
                     </Style>
                 </xamlIconLibrary:MaterialDesignIcon.Style>
             </xamlIconLibrary:MaterialDesignIcon>
-            <Label Content="Raspberry Pi"/>
+            <Label Content="{Binding ElementName=Root, Path=PiName}"/>
         </StackPanel>
     </Grid>
 </UserControl>

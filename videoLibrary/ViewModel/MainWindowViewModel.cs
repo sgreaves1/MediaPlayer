@@ -9,6 +9,7 @@ using videoLibrary.Model;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Controls.Primitives;
+using System.Net;
 
 namespace videoLibrary.ViewModel
 {
@@ -23,6 +24,7 @@ namespace videoLibrary.ViewModel
         private bool _showFilms;
         private bool _isPiOnline;
         private string _piIp;
+        private string _piName;
 
         public MainWindowViewModel()
         {
@@ -37,6 +39,10 @@ namespace videoLibrary.ViewModel
 
             PiIp = "192.168.1.5";
             IsPiOnline = CheckPing(PiIp);
+            if (IsPiOnline)
+            {
+                PiName = GetMachineNameFromIp(PiIp);
+            }
         }
 
         public List<string> MediaFolder
@@ -140,6 +146,16 @@ namespace videoLibrary.ViewModel
             set
             {
                 _piIp = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PiName
+        {
+            get { return _piName; }
+            set
+            {
+                _piName = value;
                 OnPropertyChanged();
             }
         }
@@ -269,6 +285,23 @@ namespace videoLibrary.ViewModel
                 return true;
             }
             return false;
+        }
+
+        private static string GetMachineNameFromIp(string ipAddress)
+        {
+            string machineName = string.Empty;
+
+            try
+            {
+                IPHostEntry hostEntry = Dns.GetHostEntry(ipAddress);
+                machineName = hostEntry.HostName;
+            }
+            catch (Exception ex)
+            {
+                // Machine not found
+            }
+
+            return machineName;
         }
 
         #region commands
