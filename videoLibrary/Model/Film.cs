@@ -5,13 +5,17 @@
         private string _name;
         private string _videoFile;
         private string _imageName;
+        private string _details;
+        private int _year;
+        private string _synopsis;
         private bool _isSelected;
 
-        public Film(string name, string imageName, string videoName)
+        public Film(string name, string imageName, string videoName, string details)
         {
             Name = name;
             ImageName = imageName;
             VideoFile = videoName;
+            Details = details;
         }
 
         public string Name
@@ -40,6 +44,36 @@
             set
             {
                 _imageName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Details
+        {
+            get { return _details; }
+            set
+            {
+                _details = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Year
+        {
+            get { return _year; }
+            set
+            {
+                _year = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Synopsis
+        {
+            get { return _synopsis; }
+            set
+            {
+                _synopsis = value;
                 OnPropertyChanged();
             }
         }

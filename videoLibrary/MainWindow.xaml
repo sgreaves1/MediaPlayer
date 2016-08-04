@@ -7,6 +7,7 @@
         xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
+        WindowState="Maximized"
         x:Name="Root">
 
     <Window.Resources>
@@ -21,7 +22,7 @@
                 </Button>
             </StackPanel>
 
-            <userControl:DetailsSection SelectedItem="{Binding Path=SelectedFilm}"/>
+            <userControl:DetailsSection SelectedItem="{Binding Path=SelectedFilm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <userControl:FilmGallery ItemsSource="{Binding Path=Films}"
                                      ItemSelectedCommand="{Binding Path=FilmSelectedCommand}"
                                      Visibility="{Binding Path=ShowFilms, Converter={StaticResource booltovisconverter}}"/>

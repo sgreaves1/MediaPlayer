@@ -3,23 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
              xmlns:local="clr-namespace:videoLibrary.UserControl"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
              x:Name="Root">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Width="100" Height="100" Grid.Column="0" Source="{Binding ElementName=Root, Path=SelectedItem.ImageName}"/>
-        <Label Grid.Column="1" Content="{Binding ElementName=Root, Path=SelectedItem.Name}"/>
+        <Image Grid.Row="0" Grid.RowSpan="2" Width="300" Height="300" Grid.Column="0" Source="{Binding ElementName=Root, Path=SelectedItem.ImageName}"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+            <Label Content="{Binding ElementName=Root, Path=SelectedItem.Name}" HorizontalAlignment="Center" FontSize="30"/>
+            <Label Content="{Binding ElementName=Root, Path=SelectedItem.Year}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding ElementName=Root, Path=SelectedItem.Synopsis}" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <Button Width="50" Height="50" HorizontalAlignment="Left" >
+                <xamlIconLibrary:GoogleMaterialIcon Icon="PlayArrow" Width="45" Height="45" Foreground="Black"/>
+            </Button>
+        </StackPanel>
 
     </Grid>
 </UserControl>

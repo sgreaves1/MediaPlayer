@@ -204,6 +204,7 @@ namespace videoLibrary.ViewModel
                         string name;
                         string imageName = "";
                         string videoName = "";
+                        string details = "";
 
                         int pos = dir.LastIndexOf("\\") + 1;
                         name = dir.Substring(pos, dir.Length - pos);
@@ -221,21 +222,26 @@ namespace videoLibrary.ViewModel
                             {
                                 videoName = file;
                             }
+
+                            if (file.Contains("details.txt"))
+                            {
+                                details = file;
+                            }
                         }
 
-                        AddFilm(name, imageName, videoName);
+                        AddFilm(name, imageName, videoName, details);
 
                     }
                 }
             }
         }
 
-        public void AddFilm(string name, string imageName, string videoName)
+        public void AddFilm(string name, string imageName, string videoName, string details)
         {
             if (string.IsNullOrEmpty(imageName))
                 imageName = Directory.GetCurrentDirectory() + @"\Media\FileNotFound.jpg";
 
-            Films.Add(new Film(name, imageName, videoName));
+            Films.Add(new Film(name, imageName, videoName, details));
         }
 
         private bool CheckPing(string host)
