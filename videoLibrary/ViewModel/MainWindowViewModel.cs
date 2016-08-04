@@ -20,6 +20,7 @@ namespace videoLibrary.ViewModel
         private bool _showVideo;
         private bool _showFilms;
         private bool _isPiOnline;
+        private string _piIp;
 
         public MainWindowViewModel()
         {
@@ -31,8 +32,9 @@ namespace videoLibrary.ViewModel
 
             ShowFilms = true;
             ShowVideo = false;
-            
-            //IsPiOnline = CheckPing("192.168.1.5");
+
+            PiIp = "192.168.1.5";
+            //IsPiOnline = CheckPing(PiIp);
         }
 
         public List<string> MediaFolder
@@ -116,6 +118,16 @@ namespace videoLibrary.ViewModel
             set
             {
                 _isPiOnline = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PiIp
+        {
+            get { return _piIp; }
+            set
+            {
+                _piIp = value;
                 OnPropertyChanged();
             }
         }

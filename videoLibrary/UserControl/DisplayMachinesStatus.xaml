@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
              mc:Ignorable="d" 
-             Name="Root">
+             Name="Root"
+             ToolTip="{Binding ElementName=Root, Path=Ip}">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <xamlIconLibrary:MaterialDesignIcon Icon="Wifi"  Width="20" Height="20">

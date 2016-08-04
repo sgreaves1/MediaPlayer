@@ -17,6 +17,15 @@ namespace videoLibrary.UserControl
                 new PropertyMetadata(false));
 
         /// <summary>
+        /// Dependency Property used to back the <see cref="Ip"/> property
+        /// </summary>
+        public static readonly DependencyProperty IpProperty =
+            DependencyProperty.Register("Ip",
+                typeof(string),
+                typeof(DisplayMachinesStatus),
+                new PropertyMetadata(""));
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public DisplayMachinesStatus()
@@ -31,6 +40,15 @@ namespace videoLibrary.UserControl
         {
             get { return (bool)GetValue(IsPiOnlineProperty); }
             set { SetValue(IsPiOnlineProperty, value); }
+        }
+
+        /// <summary>
+        /// String represents the physical address of the pi
+        /// </summary>
+        public string Ip
+        {
+            get { return (string)GetValue(IpProperty); }
+            set { SetValue(IpProperty, value); }
         }
     }
 }
