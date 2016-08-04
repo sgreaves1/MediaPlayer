@@ -193,36 +193,39 @@ namespace videoLibrary.ViewModel
 
         public void GetFilms()
         {
-            if (Directory.Exists(MediaFolder[0]))
+            foreach (string folder in MediaFolder)
             {
-                var directories = Directory.GetDirectories(MediaFolder[0]);
-
-                foreach (var dir in directories)
+                if (Directory.Exists(folder))
                 {
-                    string name;
-                    string imageName = "";
-                    string videoName = "";
+                    var directories = Directory.GetDirectories(folder);
 
-                    int pos = dir.LastIndexOf("\\") + 1;
-                    name = dir.Substring(pos, dir.Length - pos);
-
-                    var files = Directory.GetFiles(dir);
-
-                    foreach (var file in files)
+                    foreach (var dir in directories)
                     {
-                        if (file.Contains(".jpg"))
+                        string name;
+                        string imageName = "";
+                        string videoName = "";
+
+                        int pos = dir.LastIndexOf("\\") + 1;
+                        name = dir.Substring(pos, dir.Length - pos);
+
+                        var files = Directory.GetFiles(dir);
+
+                        foreach (var file in files)
                         {
-                            imageName = file;
+                            if (file.Contains(".jpg"))
+                            {
+                                imageName = file;
+                            }
+
+                            if (file.Contains(".avi"))
+                            {
+                                videoName = file;
+                            }
                         }
 
-                        if (file.Contains(".avi"))
-                        {
-                            videoName = file;
-                        }
+                        AddFilm(name, imageName, videoName);
+
                     }
-
-                    AddFilm(name, imageName, videoName);
-
                 }
             }
         }
