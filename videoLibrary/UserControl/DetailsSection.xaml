@@ -20,6 +20,11 @@
 
         <Image Grid.Row="0" Grid.RowSpan="2" Width="300" Height="300" Grid.Column="0" Source="{Binding ElementName=Root, Path=SelectedItem.ImageName}"/>
 
+        <Button Grid.Row="0" Grid.RowSpan="2" Width="60" Height="60" Grid.Column="0" Background="Transparent" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <xamlIconLibrary:MaterialDesignIcon Icon="StopCircleOutline" Foreground="White" Width="60" Height="60"></xamlIconLibrary:MaterialDesignIcon>
+        </Button>
+        
+
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Name}" HorizontalAlignment="Center" FontSize="30"/>
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Year}" HorizontalAlignment="Center"/>
