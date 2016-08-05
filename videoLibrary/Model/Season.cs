@@ -5,6 +5,7 @@ namespace videoLibrary.Model
     {
         private string _name;
         private string _folderLocation;
+        private bool _isSelected;
 
         public Season(string name, string folderlocation)
         {
@@ -28,6 +29,19 @@ namespace videoLibrary.Model
             set
             {
                 _folderLocation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Weather or not this season is selected in details section
+        /// </summary>
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
                 OnPropertyChanged();
             }
         }

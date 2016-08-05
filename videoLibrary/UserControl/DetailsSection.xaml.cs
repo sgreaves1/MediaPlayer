@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using videoLibrary.Model;
 
 namespace videoLibrary.UserControl
@@ -16,7 +17,16 @@ namespace videoLibrary.UserControl
                 typeof(Film),
                 typeof(DetailsSection),
                 new PropertyMetadata(null, GetDetails));
-        
+
+        /// <summary>
+        /// Dependency property to back the <see cref="SelectedSeason"/> property.
+        /// </summary>
+        public static readonly DependencyProperty SelectedSeasonProperty =
+            DependencyProperty.Register("SelectedSeason",
+                typeof(Season),
+                typeof(DetailsSection),
+                new PropertyMetadata(null, GetSeasonDetails));
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -37,6 +47,18 @@ namespace videoLibrary.UserControl
             }
         }
 
+        /// <summary>
+        /// The selected season of this details section.
+        /// </summary>
+        public Season SelectedSeason
+        {
+            get { return (Season)GetValue(SelectedSeasonProperty); }
+            set
+            {
+                SetValue(SelectedSeasonProperty, value);
+            }
+        }
+
         private static void GetDetails(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             DetailsSection uc = (DetailsSection)dependencyObject;
@@ -54,7 +76,18 @@ namespace videoLibrary.UserControl
                 {
                     uc.SelectedItem.Synopsis = "N/A";
                 }
+
+
+                foreach (Season season in uc.SelectedItem.Seasons)
+                {
+                    season.IsSelected = false;
+                }
             }
+        }
+
+        private static void GetSeasonDetails(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            throw new NotImplementedException();
         }
     }
 }
