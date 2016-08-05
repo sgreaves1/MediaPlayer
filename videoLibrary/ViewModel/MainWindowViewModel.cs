@@ -245,19 +245,33 @@ namespace videoLibrary.ViewModel
                             }
                         }
 
-                        AddFilm(name, imageName, videoName, details);
+                        // Add all season folder names to the 
+                        List<Season> seasons = null;
+                        var seasonFolder = Directory.GetDirectories(dir);
+                        foreach (var seasonFolderName in seasonFolder)
+                        {
+                            if (seasons == null)
+                                seasons = new List<Season>();
+
+                            int position = seasonFolderName.LastIndexOf("\\") + 1;
+                            string seasonName = seasonFolderName.Substring(position, seasonFolderName.Length - position);
+                            seasons.Add(new Season(seasonName, seasonFolderName));
+                        }
+
+
+                        AddFilm(name, imageName, videoName, details, seasons);
 
                     }
                 }
             }
         }
 
-        public void AddFilm(string name, string imageName, string videoName, string details)
+        public void AddFilm(string name, string imageName, string videoName, string details, List<Season> seasons )
         {
             if (string.IsNullOrEmpty(imageName))
                 imageName = Directory.GetCurrentDirectory() + @"\Media\FileNotFound.jpg";
 
-            Films.Add(new Film(name, imageName, videoName, details));
+            Films.Add(new Film(name, imageName, videoName, details, seasons));
         }
 
         private bool CheckPing(string host)

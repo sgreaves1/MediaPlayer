@@ -1,7 +1,11 @@
-﻿namespace videoLibrary.Model
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace videoLibrary.Model
 {
     public class Film : BaseModel
     {
+        private ObservableCollection<Season> _seasons; 
         private string _name;
         private string _videoFile;
         private string _imageName;
@@ -10,13 +14,26 @@
         private string _synopsis;
         private bool _isSelected;
 
-        public Film(string name, string imageName, string videoName, string details)
+        public Film(string name, string imageName, string videoName, string details, List<Season> seasons )
         {
             Name = name;
             ImageName = imageName;
             VideoFile = videoName;
             Details = details;
+
+            if (seasons != null)
+                Seasons = new ObservableCollection<Season>(seasons);
         }
+
+        public ObservableCollection<Season> Seasons
+        {
+            get { return _seasons; }
+            set
+            {
+                _seasons = value;
+                OnPropertyChanged();
+            }
+        } 
 
         public string Name
         {

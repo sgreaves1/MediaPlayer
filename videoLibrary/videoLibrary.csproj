@@ -65,6 +65,7 @@
     <Compile Include="Extended\ColumnDefinitionExtended.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Film.cs" />
+    <Compile Include="Model\Season.cs" />
     <Compile Include="UserControl\DetailsSection.xaml.cs">
       <DependentUpon>DetailsSection.xaml</DependentUpon>
     </Compile>
