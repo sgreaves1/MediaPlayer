@@ -43,7 +43,11 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ToggleButton Content="{Binding Path=Name}"/>
+                            <ToggleButton Name="ToggleButton1"
+                                          Command="{Binding ElementName=Root, Path=SeasonSelectedCommand}"
+                                          CommandParameter="{Binding ElementName=ToggleButton1}"
+                                          IsChecked="{Binding Path=IsSelected, Mode=TwoWay}"
+                                          Content="{Binding Path=Name}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

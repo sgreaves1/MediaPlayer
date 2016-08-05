@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using LibrarySamples.Command;
 using videoLibrary.Model;
 
 namespace videoLibrary.UserControl
@@ -26,13 +29,15 @@ namespace videoLibrary.UserControl
                 typeof(Season),
                 typeof(DetailsSection),
                 new PropertyMetadata(null, GetSeasonDetails));
-
+        
         /// <summary>
         /// Constructor
         /// </summary>
         public DetailsSection()
         {
             InitializeComponent();
+
+            InitCommands();
         }
 
         /// <summary>
@@ -53,17 +58,14 @@ namespace videoLibrary.UserControl
         public Season SelectedSeason
         {
             get { return (Season)GetValue(SelectedSeasonProperty); }
-            set
-            {
-                SetValue(SelectedSeasonProperty, value);
-            }
+            set { SetValue(SelectedSeasonProperty, value); }
         }
-
+        
         private static void GetDetails(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             DetailsSection uc = (DetailsSection)dependencyObject;
 
-            if (uc.SelectedItem != null)
+            if (uc?.SelectedItem != null)
             {
                 if (System.IO.File.Exists(uc.SelectedItem.Details))
                 {
@@ -89,7 +91,36 @@ namespace videoLibrary.UserControl
 
         private static void GetSeasonDetails(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            throw new NotImplementedException();
+            
         }
+
+        #region Commands
+
+        public ICommand SeasonSelectedCommand { get; set; }
+
+        private void InitCommands()
+        {
+            SeasonSelectedCommand = new DelegateCommand(ExecuteSeasonSelectedCommand, CanExecuteSeasonSelectedCommand);
+        }
+
+        private bool CanExecuteSeasonSelectedCommand(object o)
+        {
+            return true;
+        }
+
+        private void ExecuteSeasonSelectedCommand(object sender)
+        {
+            SelectedSeason = (Season)((ToggleButton)sender).DataContext;
+
+            foreach (var season in SelectedItem.Seasons)
+            {
+                season.IsSelected = false;
+            }
+
+            SelectedSeason.IsSelected = true;
+
+        }
+
+        #endregion
     }
 }

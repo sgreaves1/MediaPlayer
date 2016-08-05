@@ -36,7 +36,7 @@ namespace videoLibrary.ViewModel
 
             ShowFilms = true;
             ShowVideo = false;
-
+            
             PiIp = "192.168.1.5";
             IsPiOnline = CheckPing(PiIp);
             if (IsPiOnline)
@@ -327,7 +327,7 @@ namespace videoLibrary.ViewModel
             FilmSelectedCommand = new DelegateCommand(ExecuteFilmSelectedCommand, CanExecuteFilmSelectedCommand);
             XCommand = new DelegateCommand(ExecuteXCommand, CanExecuteXCommand);
         }
-
+        
         private bool CanExecuteFilmSelectedCommand(object sender)
         {
             return true;
