@@ -26,10 +26,12 @@
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Synopsis}" HorizontalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
-            <Button Width="50" Height="50" HorizontalAlignment="Left" >
-                <xamlIconLibrary:GoogleMaterialIcon Icon="PlayArrow" Width="45" Height="45" Foreground="Black"/>
-            </Button>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
+
+            <ItemsControl ItemsSource="{Binding ElementName=Root, Path=SelectedItem.Seasons}" DisplayMemberPath="Name" Margin="10,0,10,0">
+                
+            </ItemsControl>
+            
         </StackPanel>
 
     </Grid>

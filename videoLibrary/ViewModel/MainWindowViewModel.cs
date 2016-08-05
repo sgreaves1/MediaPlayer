@@ -245,7 +245,7 @@ namespace videoLibrary.ViewModel
                             }
                         }
 
-                        // Add all season folder names to the 
+                        // Add all season folder names to the film class
                         List<Season> seasons = null;
                         var seasonFolder = Directory.GetDirectories(dir);
                         foreach (var seasonFolderName in seasonFolder)
@@ -257,10 +257,8 @@ namespace videoLibrary.ViewModel
                             string seasonName = seasonFolderName.Substring(position, seasonFolderName.Length - position);
                             seasons.Add(new Season(seasonName, seasonFolderName));
                         }
-
-
+                        
                         AddFilm(name, imageName, videoName, details, seasons);
-
                     }
                 }
             }
