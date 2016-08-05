@@ -1,17 +1,30 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace videoLibrary.Model
 {
     public class Season : BaseModel
     {
+        private ObservableCollection<Film> _episodes = new ObservableCollection<Film>(); 
         private string _name;
         private string _folderLocation;
         private bool _isSelected;
-
+        
         public Season(string name, string folderlocation)
         {
             Name = name;
             FolderLocation = folderlocation;
         }
+
+        public ObservableCollection<Film> Episodes
+        {
+            get { return _episodes; }
+            set
+            {
+                _episodes = value;
+                OnPropertyChanged();
+            }
+        } 
 
         public string Name
         {

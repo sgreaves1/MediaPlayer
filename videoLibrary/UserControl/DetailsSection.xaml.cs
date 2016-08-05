@@ -77,10 +77,12 @@ namespace videoLibrary.UserControl
                     uc.SelectedItem.Synopsis = "N/A";
                 }
 
-
-                foreach (Season season in uc.SelectedItem.Seasons)
+                if (uc.SelectedItem.Seasons != null)
                 {
-                    season.IsSelected = false;
+                    foreach (Season season in uc.SelectedItem.Seasons)
+                    {
+                        season.IsSelected = false;
+                    }
                 }
             }
         }

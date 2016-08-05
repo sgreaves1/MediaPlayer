@@ -50,7 +50,7 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ItemsControl ItemsSource="{Binding ElementName=Root, Path=SelectedSeason}" Margin="10,0,10,0">
+                <ItemsControl ItemsSource="{Binding ElementName=Root, Path=SelectedSeason.Episodes}" Margin="10,0,10,0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel/>
