@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace videoLibrary.Model
 {
@@ -14,14 +16,13 @@ namespace videoLibrary.Model
         private double _rating;
         private bool _isSelected;
 
-        public Film(string name, string imageName, string videoName,  List<Season> seasons )
+        public Film(string name, string videoName,  List<Season> seasons)
         {
             Name = name;
-            ImageName = imageName;
             VideoFile = videoName;
 
             if (seasons != null)
-                Seasons = new ObservableCollection<Season>(seasons);
+                Seasons = new ObservableCollection<Season>(seasons);            
         }
 
         public ObservableCollection<Season> Seasons
@@ -104,6 +105,22 @@ namespace videoLibrary.Model
             }
         }
 
+        public async void GetDetails()
+        {
+            await Task.Run(() => FromJson());            
+        }
+
+        private void FromJson()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                string url = "http://www.omdbapi.com/?t=" + Name + "&y=&plot=full&r=json";
+                var jsonString = wc.DownloadString(url);
+
+                ExtractDetailsFromJsonString(jsonString);
+            }
+        }
+
         public void ExtractDetailsFromJsonString(string jsonString)
         {
             if (jsonString.Contains("Released"))
@@ -140,6 +157,16 @@ namespace videoLibrary.Model
                 double.TryParse(rating, out rate);
 
                 Rating = rate;
+            }
+
+            if (jsonString.Contains("Poster"))
+            {
+                var start = jsonString.IndexOf("Poster") + 9;
+                var match = jsonString.Substring(start);
+
+                var poster = match.Substring(0, match.IndexOf("Metascore") - 3);
+
+                ImageName = poster;
             }
         }
     }

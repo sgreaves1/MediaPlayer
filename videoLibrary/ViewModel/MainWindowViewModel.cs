@@ -208,11 +208,6 @@ namespace videoLibrary.ViewModel
 
                         foreach (var file in files)
                         {
-                            if (file.Contains(".jpg"))
-                            {
-                                imageName = file;
-                            }
-
                             if (file.Contains(".avi"))
                             {
                                 videoName = file;
@@ -232,18 +227,17 @@ namespace videoLibrary.ViewModel
                             seasons.Add(new Season(seasonName, seasonFolderName));
                         }
                         
-                        AddFilm(name, imageName, videoName, seasons);
+                        AddFilm(name, videoName, seasons);
                     }
                 }
             }
         }
 
-        public void AddFilm(string name, string imageName, string videoName, List<Season> seasons )
+        public void AddFilm(string name, string videoName, List<Season> seasons)
         {
-            if (string.IsNullOrEmpty(imageName))
-                imageName = Directory.GetCurrentDirectory() + @"\Media\FileNotFound.jpg";
-
-            Films.Add(new Film(name, imageName, videoName, seasons));
+            Film film = new Film(name, videoName, seasons);
+            Films.Add(film);
+            film.GetDetails();
         }
 
         private bool CheckPing(string host)

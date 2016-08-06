@@ -20,7 +20,7 @@ namespace videoLibrary.UserControl
             DependencyProperty.Register("SelectedItem",
                 typeof(Film),
                 typeof(DetailsSection),
-                new PropertyMetadata(null, GetDetails));
+                new PropertyMetadata(null, SelectedItemChanged));
 
         /// <summary>
         /// Dependency property to back the <see cref="SelectedSeason"/> property.
@@ -62,20 +62,12 @@ namespace videoLibrary.UserControl
             set { SetValue(SelectedSeasonProperty, value); }
         }
         
-        private static void GetDetails(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void SelectedItemChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             DetailsSection uc = (DetailsSection)dependencyObject;
 
             if (uc?.SelectedItem != null)
             {
-                using (WebClient wc = new WebClient())
-                {
-                    string url = "http://www.omdbapi.com/?t=" + uc.SelectedItem.Name + "&y=&plot=full&r=json";
-                    var jsonString = wc.DownloadString(url);
-
-                    uc.SelectedItem.ExtractDetailsFromJsonString(jsonString);                                      
-                }
-
                 if (uc.SelectedItem.Seasons != null)
                 {
                     foreach (Season season in uc.SelectedItem.Seasons)
