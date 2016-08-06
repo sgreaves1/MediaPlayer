@@ -27,7 +27,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Name}" HorizontalAlignment="Center" FontSize="30"/>
-            <Label Content="{Binding ElementName=Root, Path=SelectedItem.Year}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding ElementName=Root, Path=SelectedItem.ReleaseDate}" HorizontalAlignment="Center"/>
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Synopsis}" HorizontalAlignment="Center"/>
         </StackPanel>
 

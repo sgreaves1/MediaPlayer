@@ -10,7 +10,7 @@ namespace videoLibrary.Model
         private string _videoFile;
         private string _imageName;
         private string _details;
-        private int _year;
+        private string _releaseDate;
         private string _synopsis;
         private bool _isSelected;
 
@@ -75,12 +75,12 @@ namespace videoLibrary.Model
             }
         }
 
-        public int Year
+        public string ReleaseDate
         {
-            get { return _year; }
+            get { return _releaseDate; }
             set
             {
-                _year = value;
+                _releaseDate = value;
                 OnPropertyChanged();
             }
         }

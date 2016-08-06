@@ -4,6 +4,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using LibrarySamples.Command;
 using videoLibrary.Model;
+using System.Net;
 
 namespace videoLibrary.UserControl
 {
@@ -67,16 +68,31 @@ namespace videoLibrary.UserControl
 
             if (uc?.SelectedItem != null)
             {
-                if (System.IO.File.Exists(uc.SelectedItem.Details))
+                using (WebClient wc = new WebClient())
                 {
-                    string[] lines = System.IO.File.ReadAllLines(uc.SelectedItem.Details);
+                    string url = "http://www.omdbapi.com/?t=" + uc.SelectedItem.Name + "&y=&plot=full&r=json";
+                    var jsonString = wc.DownloadString(url);
 
-                    uc.SelectedItem.Year = int.Parse(lines[1]);
-                    uc.SelectedItem.Synopsis = lines[2];
-                }
-                else
-                {
-                    uc.SelectedItem.Synopsis = "N/A";
+                    if (jsonString.Contains("Released"))
+                    {
+                        var start = jsonString.IndexOf("Released") + 11;
+                        var match = jsonString.Substring(start);
+
+                        var released = match.Substring(0, match.IndexOf("\""));
+
+                        uc.SelectedItem.ReleaseDate = released;
+                    }
+
+                    if (jsonString.Contains("Plot"))
+                    {
+                        var start = jsonString.IndexOf("Plot") + 7;
+                        var match = jsonString.Substring(start);
+
+                        var plot = match.Substring(0, match.IndexOf("\""));
+
+                        uc.SelectedItem.Synopsis = plot;
+                        
+                    }                    
                 }
 
                 if (uc.SelectedItem.Seasons != null)
