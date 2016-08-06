@@ -7,6 +7,11 @@ namespace videoLibrary.Model
         private string _machineName;
         private bool _isOnline;
 
+        public Machine(string ip)
+        {
+            Ip = ip;
+        }
+
         public string Ip
         {
             get { return _ip; }

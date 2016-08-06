@@ -44,9 +44,9 @@
                                           Title="{Binding Path=VideoTitle}"/>
             </Grid>
 
-            <userControl:DisplayMachinesStatus IsPiOnline="{Binding Path=IsPiOnline}"
-                                               Ip="{Binding Path=PiIp}"
-                                               PiName="{Binding Path=PiName}"
+            <userControl:DisplayMachinesStatus IsPiOnline="{Binding Path=Pi.IsOnline}"
+                                               Ip="{Binding Path=Pi.Ip}"
+                                               PiName="{Binding Path=Pi.MachineName}"
                                                BorderBrush="Black" 
                                                Background="Transparent"
                                                BorderThickness="2"/>

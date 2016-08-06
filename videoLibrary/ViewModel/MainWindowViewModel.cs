@@ -22,9 +22,7 @@ namespace videoLibrary.ViewModel
         private Film _selectedFilm;
         private bool _showVideo;
         private bool _showFilms;
-        private bool _isPiOnline;
-        private string _piIp;
-        private string _piName;
+        private Machine _pi;
 
         public MainWindowViewModel()
         {
@@ -36,12 +34,14 @@ namespace videoLibrary.ViewModel
 
             ShowFilms = true;
             ShowVideo = false;
+
+
+            Pi = new Machine("192.168.1.5");
             
-            PiIp = "192.168.1.5";
-            IsPiOnline = CheckPing(PiIp);
-            if (IsPiOnline)
+            Pi.IsOnline = CheckPing(Pi.Ip);
+            if (Pi.IsOnline)
             {
-                PiName = GetMachineNameFromIp(PiIp);
+                Pi.MachineName = GetMachineNameFromIp(Pi.Ip);
             }
         }
 
@@ -130,32 +130,12 @@ namespace videoLibrary.ViewModel
             }
         }
 
-        public bool IsPiOnline
+        public Machine Pi
         {
-            get { return _isPiOnline; }
+            get { return _pi; }
             set
             {
-                _isPiOnline = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string PiIp
-        {
-            get { return _piIp; }
-            set
-            {
-                _piIp = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string PiName
-        {
-            get { return _piName; }
-            set
-            {
-                _piName = value;
+                _pi = value;
                 OnPropertyChanged();
             }
         }
