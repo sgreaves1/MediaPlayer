@@ -9,17 +9,16 @@ namespace videoLibrary.Model
         private string _name;
         private string _videoFile;
         private string _imageName;
-        private string _details;
         private string _releaseDate;
         private string _synopsis;
+        private double _rating;
         private bool _isSelected;
 
-        public Film(string name, string imageName, string videoName, string details, List<Season> seasons )
+        public Film(string name, string imageName, string videoName,  List<Season> seasons )
         {
             Name = name;
             ImageName = imageName;
             VideoFile = videoName;
-            Details = details;
 
             if (seasons != null)
                 Seasons = new ObservableCollection<Season>(seasons);
@@ -65,16 +64,6 @@ namespace videoLibrary.Model
             }
         }
 
-        public string Details
-        {
-            get { return _details; }
-            set
-            {
-                _details = value;
-                OnPropertyChanged();
-            }
-        }
-
         public string ReleaseDate
         {
             get { return _releaseDate; }
@@ -95,6 +84,16 @@ namespace videoLibrary.Model
             }
         }
 
+        public double Rating
+        {
+            get { return _rating; }
+            set
+            {
+                _rating = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool IsSelected
         {
             get { return _isSelected; }
@@ -102,6 +101,32 @@ namespace videoLibrary.Model
             {
                 _isSelected = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public void ExtractDetailsFromJsonString(string jsonString)
+        {
+            if (jsonString.Contains("Released"))
+            {
+                var start = jsonString.IndexOf("Released") + 11;
+                var match = jsonString.Substring(start);
+
+                var released = match.Substring(0, match.IndexOf("\""));
+
+                ReleaseDate = released;
+            }
+
+            if (jsonString.Contains("Plot"))
+            {
+                var start = jsonString.IndexOf("Plot") + 7;
+                var match = jsonString.Substring(start);
+
+                var plot = match.Substring(0, match.IndexOf("Language") - 3);
+
+                var formatPlot = plot.Replace("\\", "");
+
+                Synopsis = formatPlot;
+
             }
         }
     }

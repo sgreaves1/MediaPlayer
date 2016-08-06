@@ -73,28 +73,7 @@ namespace videoLibrary.UserControl
                     string url = "http://www.omdbapi.com/?t=" + uc.SelectedItem.Name + "&y=&plot=full&r=json";
                     var jsonString = wc.DownloadString(url);
 
-                    if (jsonString.Contains("Released"))
-                    {
-                        var start = jsonString.IndexOf("Released") + 11;
-                        var match = jsonString.Substring(start);
-
-                        var released = match.Substring(0, match.IndexOf("\""));
-
-                        uc.SelectedItem.ReleaseDate = released;
-                    }
-
-                    if (jsonString.Contains("Plot"))
-                    {
-                        var start = jsonString.IndexOf("Plot") + 7;
-                        var match = jsonString.Substring(start);
-
-                        var plot = match.Substring(0, match.IndexOf("Language")-3);
-
-                        var formatPlot = plot.Replace("\\", "");
-
-                        uc.SelectedItem.Synopsis = formatPlot;
-                        
-                    }                    
+                    uc.SelectedItem.ExtractDetailsFromJsonString(jsonString);                                      
                 }
 
                 if (uc.SelectedItem.Seasons != null)

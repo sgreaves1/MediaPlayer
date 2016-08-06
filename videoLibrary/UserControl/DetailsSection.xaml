@@ -29,6 +29,7 @@
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.Name}" HorizontalAlignment="Center" FontSize="30"/>
             <Label Content="{Binding ElementName=Root, Path=SelectedItem.ReleaseDate}" HorizontalAlignment="Center"/>
             <TextBlock TextWrapping="Wrap" Margin="10,0,30,0" Text="{Binding ElementName=Root, Path=SelectedItem.Synopsis}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding ElementName=Root, Path=SelectedItem.Rating}" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">

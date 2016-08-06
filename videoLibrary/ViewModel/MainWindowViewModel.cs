@@ -220,7 +220,6 @@ namespace videoLibrary.ViewModel
                         string name;
                         string imageName = "";
                         string videoName = "";
-                        string details = "";
 
                         int pos = dir.LastIndexOf("\\") + 1;
                         name = dir.Substring(pos, dir.Length - pos);
@@ -238,11 +237,6 @@ namespace videoLibrary.ViewModel
                             {
                                 videoName = file;
                             }
-
-                            if (file.Contains("details.txt"))
-                            {
-                                details = file;
-                            }
                         }
 
                         // Add all season folder names to the film class
@@ -258,18 +252,18 @@ namespace videoLibrary.ViewModel
                             seasons.Add(new Season(seasonName, seasonFolderName));
                         }
                         
-                        AddFilm(name, imageName, videoName, details, seasons);
+                        AddFilm(name, imageName, videoName, seasons);
                     }
                 }
             }
         }
 
-        public void AddFilm(string name, string imageName, string videoName, string details, List<Season> seasons )
+        public void AddFilm(string name, string imageName, string videoName, List<Season> seasons )
         {
             if (string.IsNullOrEmpty(imageName))
                 imageName = Directory.GetCurrentDirectory() + @"\Media\FileNotFound.jpg";
 
-            Films.Add(new Film(name, imageName, videoName, details, seasons));
+            Films.Add(new Film(name, imageName, videoName, seasons));
         }
 
         private bool CheckPing(string host)
