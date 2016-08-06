@@ -88,9 +88,11 @@ namespace videoLibrary.UserControl
                         var start = jsonString.IndexOf("Plot") + 7;
                         var match = jsonString.Substring(start);
 
-                        var plot = match.Substring(0, match.IndexOf("\""));
+                        var plot = match.Substring(0, match.IndexOf("Language")-3);
 
-                        uc.SelectedItem.Synopsis = plot;
+                        var formatPlot = plot.Replace("\\", "");
+
+                        uc.SelectedItem.Synopsis = formatPlot;
                         
                     }                    
                 }
