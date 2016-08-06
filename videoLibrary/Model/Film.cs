@@ -128,6 +128,19 @@ namespace videoLibrary.Model
                 Synopsis = formatPlot;
 
             }
+
+            if (jsonString.Contains("imdbRating"))
+            {
+                var start = jsonString.IndexOf("imdbRating") + 13;
+                var match = jsonString.Substring(start);
+
+                var rating = match.Substring(0, match.IndexOf("imdbVotes")-3);
+
+                double rate = 0.0;
+                double.TryParse(rating, out rate);
+
+                Rating = rate;
+            }
         }
     }
 }
